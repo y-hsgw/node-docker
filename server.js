@@ -10,8 +10,9 @@ async function main() {
       port: process.env.SERVER_PORT,
     });
 
-    server.use("/", mocks.server(server.Router()));
-
+    server.use("/foo", (req, res) => {
+      return res.json({ foo: "bar" });
+    });
     const result = await server.start();
     console.info(result);
   } catch (error) {
